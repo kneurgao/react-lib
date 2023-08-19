@@ -4,7 +4,7 @@ import { Button } from '../components/Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Example/Button',
+  title: 'core/Button',
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
@@ -14,7 +14,11 @@ const meta = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    intent: { control: 'radio', defaultValue: 'none' },
+    size: { defaultValue: 'lg' },
+    icon: { defaultValue: undefined },
+    disabled: { type: 'boolean', defaultValue: false },
+    onClick: { type: 'function' },
   },
 } satisfies Meta<typeof Button>;
 
@@ -24,27 +28,29 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    primary: true,
-    label: 'Button',
+    children: 'Default',
   },
 };
 
-export const Secondary: Story = {
+export const Success: Story = {
   args: {
-    label: 'Button',
+    intent: 'success',
+    children: 'Success',
   },
 };
 
-export const Large: Story = {
+export const Warning: Story = {
   args: {
-    size: 'large',
-    label: 'Button',
+    intent: 'warning',
+    children: 'Warning',
+    size: 'md',
   },
 };
 
-export const Small: Story = {
+export const Danger: Story = {
   args: {
-    size: 'small',
-    label: 'Button',
+    intent: 'danger',
+    children: 'Danger',
+    size: 'lg',
   },
 };
